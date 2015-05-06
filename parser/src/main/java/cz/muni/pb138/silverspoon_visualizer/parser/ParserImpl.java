@@ -1,5 +1,6 @@
 package cz.muni.pb138.silverspoon_visualizer.parser;
 
+import com.sun.istack.internal.Nullable;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -26,14 +27,21 @@ import java.util.logging.Logger;
  */
 public class ParserImpl implements Parser {
 
-    List<Flow> flows;
+    private final static Logger LOGGER = Logger.getLogger(ParserImpl.class.getName());
+    List<Route> routes;
     Document document;
 
-    private final static Logger LOGGER = Logger.getLogger(ParserImpl.class.getName());
-
     public ParserImpl() {
-        flows = new ArrayList<>();
+        routes = new ArrayList<>();
         document = null;
+    }
+
+    private static List<Element> nodeListToList(NodeList list) {
+        List<Element> elements = new ArrayList<>();
+        for (int i = 0; i < list.getLength(); i++) {
+            elements.add((Element) list.item(i));
+        }
+        return elements;
     }
 
     @Override
@@ -68,24 +76,23 @@ public class ParserImpl implements Parser {
                 loadRoute(e);
             }
         }
-        System.out.println(flows.get(0));
+        System.out.println(routes.get(0));
     }
 
-    private void loadRoute(Element route) throws ParserException {
-        Flow flow = new FlowImpl();
+    private void loadRoute(Element nodeRoute) throws ParserException {
+        Route route = new RouteImpl();
         PathObject prev = null;
-        //for (Element element =(Element) route.getFirstChild(); element != null; element = (Element) element.getNextSibling()) {
-        for(Node node = route.getFirstChild(); node != null; node = node.getNextSibling()) {
+        for (Node node = nodeRoute.getFirstChild(); node != null; node = node.getNextSibling()) {
             if (node instanceof Element) {
                 Element element = (Element) node;
                 PathObject obj = parseElement(element);
-                if (obj.getNextType()==null) {
+                if (obj != null && obj.getNextType() == null) {
                     obj.setNextType(SuccessionTypes.STRAIGHT);
                 }
                 // TODO: rework, only working on linear trees
                 if (obj != null) {
                     if (prev == null) {
-                        flow.setFirst(obj);
+                        route.setFirst(obj);
                         prev = obj;
                     }
                     else {
@@ -96,23 +103,15 @@ public class ParserImpl implements Parser {
             }
 
         }
-        flows.add(flow);
+        routes.add(route);
     }
-
 
     @Override
-    public List<Flow> getFlows() {
-        return Collections.unmodifiableList(flows);
+    public List<Route> getRoutes() {
+        return Collections.unmodifiableList(routes);
     }
 
-    private static List<Element> nodeListToList(NodeList list) {
-        List<Element> elements = new ArrayList<>();
-        for (int i = 0; i < list.getLength(); i++) {
-            elements.add((Element) list.item(i));
-        }
-        return elements;
-    }
-
+    @Nullable
     private PathObject parseElement(Element element) throws ParserException {
         if (element.getTagName().equals("from") || element.getTagName().equals("to")) {
             String from  = element.getAttribute("uri");
@@ -133,7 +132,7 @@ public class ParserImpl implements Parser {
     private PathObject protocolHandling(URI uri) {
         String protocol = uri.getScheme();
         if (protocol.equals("gpio")) {
-            return new GpioPathObject.GpioPathObjectBuilder().setAdditionalInfo(uri.getSchemeSpecificPart()).setName(protocol).setNextType(SuccessionTypes.STRAIGHT).setPin(uri.getHost()).build();
+            return new SimpleGpioPathObject.GpioPathObjectBuilder().setAdditionalInfo(uri.getSchemeSpecificPart()).setName(protocol).setNextType(SuccessionTypes.STRAIGHT).setPin(uri.getHost()).build();
         } else if(protocol.equals("mqtt")) {
             return new SimplePathObject.SimplePathObjectBuilder().setAdditionalInfo(uri.getSchemeSpecificPart()).setName(protocol).setNextType(SuccessionTypes.STRAIGHT).setNextType(SuccessionTypes.ETHERNET).build();
         }

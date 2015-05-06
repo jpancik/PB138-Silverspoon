@@ -8,14 +8,31 @@ import java.util.List;
  */
 public interface PathObject {
 
-    List<PathObject> getNext();
-    SuccessionTypes getNextType();
-    String getName();
-    String getAdditionalInfo();
+    /**
+     * Gets all direct successors of this object. Their relation to this is defined by {@link #getNextType()}.
+     */
+    public List<PathObject> getNext();
 
-    void addNext(PathObject o);
-    void setNextType(SuccessionTypes o);
-    void setName(String o);
-    void setAdditionalInfo(String o);
+    /**
+     * Gets relation between this element and all its successors.
+     */
+    public SuccessionTypes getNextType();
 
+    public void setNextType(SuccessionTypes o);
+
+    /**
+     * Gets name to be displayed.
+     */
+    public String getName();
+
+    public void setName(String o);
+
+    /**
+     * Gets additional information about this object.
+     */
+    public String getAdditionalInfo();
+
+    public void setAdditionalInfo(String o);
+
+    public void addNext(PathObject o);
 }

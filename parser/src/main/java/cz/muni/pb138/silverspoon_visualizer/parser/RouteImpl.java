@@ -5,15 +5,11 @@ package cz.muni.pb138.silverspoon_visualizer.parser;
  * @version 0.1
  * @since 5.5.2015
  */
-public class FlowImpl implements Flow {
+public class RouteImpl implements Route {
 
     private PathObject first;
 
-    public FlowImpl() {
-    }
-
-    public void setFirst(PathObject first) {
-        this.first = first;
+    public RouteImpl() {
     }
 
     @Override
@@ -21,8 +17,12 @@ public class FlowImpl implements Flow {
         return first;
     }
 
+    public void setFirst(PathObject first) {
+        this.first = first;
+    }
+
     @Override
     public String toString() {
-        return "FLOW:  "+first;
+        return "ROUTE: " + first;
     }
 }
