@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800" height="510">
+  
+  <defs>
+    <circle id="hole" cx="0" cy="0" r="13" fill="#FFFFFF" stroke="#FFDC69" stroke-width="4" />
+    
+    <g id="pin">
+      <rect x="0" y="0" width="15" height="15" fill="#272727" stroke="#000000" stroke-width="0.1" />
+      <rect x="2.5" y="2.5" width="10" height="10" fill="#333333" />
+      <rect x="4" y="4" width="7" height="7" fill="#555555" />
+      <polygon points="2.5,2.5 12.5,2.5 2.5,12.5" fill="#000000" style="fill-opacity:0.35" />
+      <rect x="5" y="5" width="5" height="5" fill="#222222" />
+    </g>
+    
+    <polygon id="port_latch" points="0,0 40,5 40,25 0,30 0,27.5 36,22 36,8 0,2.5" fill="#000000" style="fill-opacity:0.75" />
+    
+    <linearGradient id="silver_grad" x1="0" x2="0" y1="0" y2="1.41" gradientTransform="rotate(-45)">
+      <stop offset="0%" stop-color="#919191"/>
+      <stop offset="25%" stop-color="#7E7E7E"/>
+      <stop offset="50%" stop-color="#E6E6E6"/>
+      <stop offset="75%" stop-color="#7E7E7E"/>
+      <stop offset="100%" stop-color="#919191"/>
+    </linearGradient>
+    
+    <linearGradient id="black_grad" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#202020" />  
+      <stop offset="50%" stop-color="#9F9F9F" />
+      <stop offset="100%" stop-color="#202020" />
+    </linearGradient>
+  </defs>
+  
+  <g id="body">
+    <rect x="115" y="100" width="410" height="350" rx="35" fill="#1A1A1A" />
+    <rect id="resizable_body" x="365" y="100" width="300" height="350" rx="100" fill="#1A1A1A" />
+  </g>
+  
+  <g id="movable" transform="translate(0 0)">
+    <g id="movable_holes">
+      <use x="620" y="145" xlink:href="#hole" />
+      <use x="620" y="405" xlink:href="#hole" />
+    </g>
+    
+    <g id="usb">
+      <rect x="575" y="285" width="90" height="80" rx="1" fill="url(#silver_grad)" />
+      <use xlink:href="#port_latch" transform="translate(628 295), scale(0.7 0.8)" />
+      <use xlink:href="#port_latch" transform="translate(628 330), scale(0.7 0.8)" />
+    </g>
+  </g>
+  
+  <g id="static_holes">
+    <use x="220" y="125" xlink:href="#hole" />
+    <use x="220" y="425" xlink:href="#hole" />
+  </g>
+  
+  <rect id="ethernet_rect" x="100" y="200" width="145" height="105" rx="2" fill="url(#silver_grad)" />
+  
+  <g id="adapter">  
+    <rect x="100" y="345" width="20" height="60" fill="#333333" />
+    <rect x="104" y="345" width="4" height="60" fill="#000000" />
+    <rect x="104" y="355" width="4" height="40" fill="#1A1A1A" />
+    <rect x="112" y="345" width="84" height="60" fill="url(#black_grad)" />
+  </g>
+  
+  <g id="pins">
+    <use id="p8_1" x="247" y="125" xlink:href="#pin" />
+    <use id="p8_2" x="247" y="110" xlink:href="#pin" />
+    <use id="p8_3" x="262" y="125" xlink:href="#pin" />
+    <use id="p8_4" x="262" y="110" xlink:href="#pin" />
+    <use id="p8_5" x="277" y="125" xlink:href="#pin" />
+    <use id="p8_6" x="277" y="110" xlink:href="#pin" />
+    <use id="p8_7" x="292" y="125" xlink:href="#pin" />
+    <use id="p8_8" x="292" y="110" xlink:href="#pin" />
+    <use id="p8_9" x="307" y="125" xlink:href="#pin" />
+    <use id="p8_10" x="307" y="110" xlink:href="#pin" />
+    <use id="p8_11" x="322" y="125" xlink:href="#pin" />
+    <use id="p8_12" x="322" y="110" xlink:href="#pin" />
+    <use id="p8_13" x="337" y="125" xlink:href="#pin" />
+    <use id="p8_14" x="337" y="110" xlink:href="#pin" />
+    <use id="p8_15" x="352" y="125" xlink:href="#pin" />
+    <use id="p8_16" x="352" y="110" xlink:href="#pin" />
+    <use id="p8_17" x="367" y="125" xlink:href="#pin" />
+    <use id="p8_18" x="367" y="110" xlink:href="#pin" />
+    <use id="p8_19" x="382" y="125" xlink:href="#pin" />
+    <use id="p8_20" x="382" y="110" xlink:href="#pin" />
+    <use id="p8_21" x="397" y="125" xlink:href="#pin" />
+    <use id="p8_22" x="397" y="110" xlink:href="#pin" />
+    <use id="p8_23" x="412" y="125" xlink:href="#pin" />
+    <use id="p8_24" x="412" y="110" xlink:href="#pin" />
+    <use id="p8_25" x="427" y="125" xlink:href="#pin" />
+    <use id="p8_26" x="427" y="110" xlink:href="#pin" />
+    <use id="p8_27" x="442" y="125" xlink:href="#pin" />
+    <use id="p8_28" x="442" y="110" xlink:href="#pin" />
+    <use id="p8_29" x="457" y="125" xlink:href="#pin" />
+    <use id="p8_30" x="457" y="110" xlink:href="#pin" />
+    <use id="p8_31" x="472" y="125" xlink:href="#pin" />
+    <use id="p8_32" x="472" y="110" xlink:href="#pin" />
+    <use id="p8_33" x="487" y="125" xlink:href="#pin" />
+    <use id="p8_34" x="487" y="110" xlink:href="#pin" />
+    <use id="p8_35" x="502" y="125" xlink:href="#pin" />
+    <use id="p8_36" x="502" y="110" xlink:href="#pin" />
+    <use id="p8_37" x="517" y="125" xlink:href="#pin" />
+    <use id="p8_38" x="517" y="110" xlink:href="#pin" />
+    <use id="p8_39" x="532" y="125" xlink:href="#pin" />
+    <use id="p8_40" x="532" y="110" xlink:href="#pin" />
+    <use id="p8_41" x="547" y="125" xlink:href="#pin" />
+    <use id="p8_42" x="547" y="110" xlink:href="#pin" />
+    <use id="p8_43" x="562" y="125" xlink:href="#pin" />
+    <use id="p8_44" x="562" y="110" xlink:href="#pin" />
+    <use id="p8_45" x="577" y="125" xlink:href="#pin" />
+    <use id="p8_46" x="577" y="110" xlink:href="#pin" />
+    <use id="p9_1" x="247" y="425" xlink:href="#pin" />
+    <use id="p9_2" x="247" y="410" xlink:href="#pin" />
+    <use id="p9_3" x="262" y="425" xlink:href="#pin" />
+    <use id="p9_4" x="262" y="410" xlink:href="#pin" />
+    <use id="p9_5" x="277" y="425" xlink:href="#pin" />
+    <use id="p9_6" x="277" y="410" xlink:href="#pin" />
+    <use id="p9_7" x="292" y="425" xlink:href="#pin" />
+    <use id="p9_8" x="292" y="410" xlink:href="#pin" />
+    <use id="p9_9" x="307" y="425" xlink:href="#pin" />
+    <use id="p9_10" x="307" y="410" xlink:href="#pin" />
+    <use id="p9_11" x="322" y="425" xlink:href="#pin" />
+    <use id="p9_12" x="322" y="410" xlink:href="#pin" />
+    <use id="p9_13" x="337" y="425" xlink:href="#pin" />
+    <use id="p9_14" x="337" y="410" xlink:href="#pin" />
+    <use id="p9_15" x="352" y="425" xlink:href="#pin" />
+    <use id="p9_16" x="352" y="410" xlink:href="#pin" />
+    <use id="p9_17" x="367" y="425" xlink:href="#pin" />
+    <use id="p9_18" x="367" y="410" xlink:href="#pin" />
+    <use id="p9_19" x="382" y="425" xlink:href="#pin" />
+    <use id="p9_20" x="382" y="410" xlink:href="#pin" />
+    <use id="p9_21" x="397" y="425" xlink:href="#pin" />
+    <use id="p9_22" x="397" y="410" xlink:href="#pin" />
+    <use id="p9_23" x="412" y="425" xlink:href="#pin" />
+    <use id="p9_24" x="412" y="410" xlink:href="#pin" />
+    <use id="p9_25" x="427" y="425" xlink:href="#pin" />
+    <use id="p9_26" x="427" y="410" xlink:href="#pin" />
+    <use id="p9_27" x="442" y="425" xlink:href="#pin" />
+    <use id="p9_28" x="442" y="410" xlink:href="#pin" />
+    <use id="p9_29" x="457" y="425" xlink:href="#pin" />
+    <use id="p9_30" x="457" y="410" xlink:href="#pin" />
+    <use id="p9_31" x="472" y="425" xlink:href="#pin" />
+    <use id="p9_32" x="472" y="410" xlink:href="#pin" />
+    <use id="p9_33" x="487" y="425" xlink:href="#pin" />
+    <use id="p9_34" x="487" y="410" xlink:href="#pin" />
+    <use id="p9_35" x="502" y="425" xlink:href="#pin" />
+    <use id="p9_36" x="502" y="410" xlink:href="#pin" />
+    <use id="p9_37" x="517" y="425" xlink:href="#pin" />
+    <use id="p9_38" x="517" y="410" xlink:href="#pin" />
+    <use id="p9_39" x="532" y="425" xlink:href="#pin" />
+    <use id="p9_40" x="532" y="410" xlink:href="#pin" />
+    <use id="p9_41" x="547" y="425" xlink:href="#pin" />
+    <use id="p9_42" x="547" y="410" xlink:href="#pin" />
+    <use id="p9_43" x="562" y="425" xlink:href="#pin" />
+    <use id="p9_44" x="562" y="410" xlink:href="#pin" />
+    <use id="p9_45" x="577" y="425" xlink:href="#pin" />
+    <use id="p9_46" x="577" y="410" xlink:href="#pin" />
+  </g>
+  
+  <g id="texts">
+    <text x="240" y="119" font-size="60%" fill="#FFFFFF">2</text>
+    <text x="240" y="138" font-size="60%" fill="#FFFFFF">1</text>
+    <text x="594" y="119" font-size="60%" fill="#FFFFFF">46</text>
+    <text x="594" y="138" font-size="60%" fill="#FFFFFF">45</text>
+    <text x="240" y="419" font-size="60%" fill="#FFFFFF">2</text>
+    <text x="240" y="438" font-size="60%" fill="#FFFFFF">1</text>
+    <text x="594" y="419" font-size="60%" fill="#FFFFFF">46</text>
+    <text x="594" y="438" font-size="60%" fill="#FFFFFF">45</text>
+    <text x="248" y="155" font-size="120%" fill="#333333">P8</text>
+    <text x="248" y="409" font-size="120%" fill="#333333">P9</text>
+  </g>
+  
+</svg>
