@@ -20,4 +20,6 @@ public interface Route {
      * @param first first object on route.
      */
     public void setFirst(PathObject first);
+
+    public int getLength();
 }

@@ -76,7 +76,6 @@ public class ParserImpl implements Parser {
                 loadRoute(e);
             }
         }
-        System.out.println(routes.get(0));
     }
 
     private void loadRoute(Element nodeRoute) throws ParserException {

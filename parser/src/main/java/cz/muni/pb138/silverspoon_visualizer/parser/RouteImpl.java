@@ -22,7 +22,32 @@ public class RouteImpl implements Route {
     }
 
     @Override
+    public int getLength() {
+        PathObject o = getFirst();
+        if (o == null) {
+            return 0;
+        }
+        return getLen(o);
+    }
+
+    private int getLen(PathObject o) {
+        int mx = -1;
+        if (o.getNext().isEmpty()) {
+            return 1;
+        }
+        for (PathObject i : o.getNext()) {
+            mx = max(mx, getLen(i));
+        }
+        mx += 1;
+        return mx;
+    }
+
+    private int max(int a, int b) {
+        return a > b ? a : b;
+    }
+
+    @Override
     public String toString() {
-        return "ROUTE: " + first;
+        return "ROUTE (len = " + getLength() + "): " + first;
     }
 }

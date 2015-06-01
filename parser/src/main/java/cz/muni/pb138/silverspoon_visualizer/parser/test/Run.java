@@ -17,5 +17,6 @@ public class Run {
         } catch (ParserException e) {
             e.printStackTrace();
         }
+        System.out.println(parser.getRoutes().get(0));
     }
 }
