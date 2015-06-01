@@ -24,27 +24,21 @@ public class RouteDrawer {
     private String svgNS;
     private Document document;
 
-    public RouteDrawer(Route route) {
+    public RouteDrawer(Route route, Document document) {
         this.route = route;
+        this.document = document;
     }
 
-    public Document drawRoute() {
+    public void drawRoute() {
         int i = route.getLength();
         int width = (i + 1) * ROUTE_SPACER_WIDTH + i * ROUTE_MODULE_WIDTH;
         int height = 2 * ROUTE_SPACER_HEIGHT + ROUTE_MODULE_HEIGHT;
 
-        DOMImplementation domImplementation = SVGDOMImplementation.getDOMImplementation();
         this.svgNS = SVGDOMImplementation.SVG_NAMESPACE_URI;
-        this.document = domImplementation.createDocument(svgNS, "svg", null);
 
-        Element svgRoot = document.getDocumentElement();
-        svgRoot.setAttributeNS(null, "width", String.valueOf(width));
-        svgRoot.setAttributeNS(null, "height", String.valueOf(height));
+        Element routeGroup = document.getElementById("route");
 
-        Element routeGroup = document.createElementNS(svgNS, "g");
-        routeGroup.setAttributeNS(null, "id", "route");
-
-        Element mainRect = new RectBuilder().setX(0).setY(0).setWidth(width).setHeight(height).setFill(ROUTE_BACKGROUND_COLOR).setRX(5).setStroke("#000000").setStrokeWidth(3).getRect();
+        Element mainRect = new RectBuilder().setID("main_rect").setX(0).setY(0).setWidth(width).setHeight(height).setFill(ROUTE_BACKGROUND_COLOR).setRX(5).setStroke("#000000").setStrokeWidth(3).getRect();
         routeGroup.appendChild(mainRect);
 
         PathObject pathObject = route.getFirst();
@@ -66,10 +60,6 @@ public class RouteDrawer {
                 spacer += ROUTE_SPACER_WIDTH + ROUTE_MODULE_WIDTH;
             }
         }
-
-        svgRoot.appendChild(routeGroup);
-
-        return document;
     }
 
     private class RectBuilder {
@@ -77,6 +67,11 @@ public class RouteDrawer {
 
         public RectBuilder() {
             this.rect = document.createElementNS(svgNS, "rect");
+        }
+
+        public RectBuilder setID(String id) {
+            this.rect.setAttributeNS(null, "id", id);
+            return this;
         }
 
         public RectBuilder setX(double x) {
@@ -174,10 +169,21 @@ public class RouteDrawer {
             Element moduleRect = new RectBuilder().setX(x).setY(ROUTE_SPACER_HEIGHT).setWidth(ROUTE_MODULE_WIDTH).setHeight(ROUTE_MODULE_HEIGHT).setFill(ROUTE_MODULE_COLOR).setRX(2).setStroke("#000000").setStrokeWidth(1).getRect();
             moduleGroup.appendChild(moduleRect);
 
+            if (text.length() >= 10) {
+                text = text.substring(0, 6) + "...";
+            }
+
+            double fontSize = 160;
+
+            if (text.length() > 5) {
+                double coef = (text.length() - 5) * 0.08;
+                fontSize -= (fontSize * coef);
+            }
+
             Element moduleText = document.createElementNS(svgNS, "text");
             moduleText.setAttributeNS(null, "x", String.valueOf(x + 15));
             moduleText.setAttributeNS(null, "y", String.valueOf(ROUTE_SPACER_HEIGHT + ROUTE_MODULE_HEIGHT/2 + 10));
-            moduleText.setAttributeNS(null, "font-size", "160%");
+            moduleText.setAttributeNS(null, "font-size", String.valueOf(fontSize) + "%");
             moduleText.setAttributeNS(null, "fill", "#000000");
             moduleText.setTextContent(this.text.toUpperCase());
             moduleGroup.appendChild(moduleText);

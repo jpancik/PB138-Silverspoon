@@ -104,4 +104,7 @@
   
   <text id="gpio" x="150" y="145" font-size="60%" fill="#FFFFFF">GPIO</text>
   
+  <g id="route" transform="translate(125 175)">
+  </g>
+  
 </svg>
