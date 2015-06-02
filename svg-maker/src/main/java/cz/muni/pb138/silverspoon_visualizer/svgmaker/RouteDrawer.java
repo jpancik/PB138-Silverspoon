@@ -17,7 +17,7 @@ public class RouteDrawer {
     public static final int ROUTE_SPACER_WIDTH = 25;
     public static final int ROUTE_MODULE_HEIGHT = 60;
     public static final int ROUTE_SPACER_HEIGHT = 50;
-    public static final String ROUTE_MODULE_COLOR = "#D5E5FF";
+    public static final String ROUTE_MODULE_COLOR = "#6CB5FF";
     public static final String ROUTE_BACKGROUND_COLOR = "#333333";
 
     private Route route;
@@ -166,7 +166,7 @@ public class RouteDrawer {
             Element moduleGroup = document.createElementNS(svgNS, "g");
             moduleGroup.setAttributeNS(null, "id", "module_" + String.valueOf(num));
 
-            Element moduleRect = new RectBuilder().setX(x).setY(ROUTE_SPACER_HEIGHT).setWidth(ROUTE_MODULE_WIDTH).setHeight(ROUTE_MODULE_HEIGHT).setFill(ROUTE_MODULE_COLOR).setRX(2).setStroke("#000000").setStrokeWidth(1).getRect();
+            Element moduleRect = new RectBuilder().setX(x).setY(ROUTE_SPACER_HEIGHT).setWidth(ROUTE_MODULE_WIDTH).setHeight(ROUTE_MODULE_HEIGHT).setFill(ROUTE_MODULE_COLOR).setRX(4).setStroke("#FFFFFF").setStrokeWidth(2).getRect();
             moduleGroup.appendChild(moduleRect);
 
             if (text.length() >= 10) {

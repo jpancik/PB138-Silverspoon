@@ -30,9 +30,9 @@
     </linearGradient>
   </defs>
   
-  <g id="body">
+  <g id="body_group">
     <rect x="115" y="100" width="410" height="350" rx="35" fill="#1A1A1A" />
-    <rect id="resizable_body" x="365" y="100" width="300" height="350" rx="100" fill="#1A1A1A" />
+    <rect id="body" x="365" y="100" width="300" height="350" rx="100" fill="#1A1A1A" />
   </g>
   
   <g id="movable" transform="translate(0 0)">
@@ -168,6 +168,9 @@
     <text x="594" y="438" font-size="60%" fill="#FFFFFF">45</text>
     <text x="248" y="155" font-size="120%" fill="#333333">P8</text>
     <text x="248" y="409" font-size="120%" fill="#333333">P9</text>
+  </g>
+  
+  <g id="route" transform="translate(275 175)">
   </g>
   
 </svg>
