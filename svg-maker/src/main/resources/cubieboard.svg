@@ -150,4 +150,7 @@
     <use xlink:href="#port_latch" transform="translate(259 400), rotate(90), scale(0.7 0.8)" />
   </g>
   
+  <g id="route" transform="translate(125 175)">
+  </g>
+  
 </svg>
