@@ -32,8 +32,8 @@
       <use x="605" y="400" xlink:href="#hole" />
     </g>
     
-    <g id="ethernet">
-      <rect id="ethernet_port" x="515" y="290" width="125" height="90" rx="2" fill="url(#silver_grad)" />
+    <g id="ethernet_group">
+      <rect id="ethernet" x="515" y="290" width="125" height="90" rx="2" fill="url(#silver_grad)" />
       <text id="ethernet_text" x="520" y="285" font-size="55%" fill="#FFFFFF">ETHERNET</text>
     </g>
   </g>

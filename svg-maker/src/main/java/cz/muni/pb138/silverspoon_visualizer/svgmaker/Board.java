@@ -1,15 +1,13 @@
 package cz.muni.pb138.silverspoon_visualizer.svgmaker;
 
-import com.kitfox.svg.SVGCache;
-import com.kitfox.svg.SVGDiagram;
-import com.kitfox.svg.SVGUniverse;
 import cz.muni.pb138.silverspoon_visualizer.parser.Route;
 import org.apache.batik.anim.dom.SAXSVGDocumentFactory;
 import org.apache.batik.util.XMLResourceDescriptor;
 import org.w3c.dom.Document;
 
-import java.io.*;
-import java.net.URI;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * This class represents the base concept of any board.

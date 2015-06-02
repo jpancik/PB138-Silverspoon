@@ -35,9 +35,9 @@
   <rect id="body" x="100" y="100" width="475" height="310" rx="20" fill="#007300" />
   
   <g id="movable" transform="translate(0 0)">
-    <rect id="ethernetRect" x="460" y="295" width="125" height="90" rx="2" fill="url(#silver_grad)" />
+    <rect id="ethernet" x="460" y="295" width="125" height="90" rx="2" fill="url(#silver_grad)" />
     
-	<text id="ethernet" x="520" y="400" font-size="55%" fill="#FFFFFF">ETHERNET</text>
+	<text id="ethernet_text" x="520" y="400" font-size="55%" fill="#FFFFFF">ETHERNET</text>
     
 	<g id="usb_ports">
       <rect x="495" y="195" width="90" height="80" rx="1" fill="url(#silver_grad)" />
@@ -101,8 +101,6 @@
     <use id="ph7_39" x="373" y="118" xlink:href="#down_pins" />
     <use id="ph7_40" x="373" y="105" xlink:href="#up_pins" />
   </g>
-  
-  <text id="gpio" x="150" y="145" font-size="60%" fill="#FFFFFF">GPIO</text>
   
   <g id="route" transform="translate(125 175)">
   </g>

@@ -53,7 +53,7 @@
     <use x="220" y="425" xlink:href="#hole" />
   </g>
   
-  <rect id="ethernet_rect" x="100" y="200" width="145" height="105" rx="2" fill="url(#silver_grad)" />
+  <rect id="ethernet" x="100" y="200" width="145" height="105" rx="2" fill="url(#silver_grad)" />
   
   <g id="adapter">  
     <rect x="100" y="345" width="20" height="60" fill="#333333" />

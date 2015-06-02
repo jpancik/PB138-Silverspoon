@@ -1,15 +1,11 @@
 package cz.muni.pb138.silverspoon_visualizer.svgmaker;
 
-import cz.muni.pb138.silverspoon_visualizer.parser.GpioPathObject;
 import cz.muni.pb138.silverspoon_visualizer.parser.PathObject;
 import cz.muni.pb138.silverspoon_visualizer.parser.Route;
 import cz.muni.pb138.silverspoon_visualizer.parser.SuccessionTypes;
 import org.apache.batik.anim.dom.SVGDOMImplementation;
-import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-
-import javax.sound.sampled.Line;
 
 /**
  * This class handles most of the route drawing.
@@ -75,23 +71,44 @@ public class RouteDrawer {
     }
 
     /**
-     * This is a "helper" method used for creating dotted line from point A to point B, setting it's other parameters to set ones.
+     * This is a "helper" method used for creating dotted line from point A to point B, setting it's other parameters to set ones. It also can draw arrowheads.
      *
      * @param parent Element that will be parent of the created route.
      * @param x1 x coordinate of the start of the line.
      * @param y1 y coordinate of the start of the line.
      * @param x2 x coordinate of the end of the line.
      * @param y2 y coordinate of the end of the line.
+     * @param arrowhead boolean value controlling if line should be ended with an arrowhead.
      */
-    public void drawDottedLine(Element parent, double x1, double y1, double x2, double y2) {
+    public void drawDottedLine(Element parent, double x1, double y1, double x2, double y2, boolean arrowhead) {
         Element line = new LineBuilder().setX1(x1).setY1(y1).setX2(x2).setY2(y2).setFill("none").setStroke("#FFFFFF").setStrokeWidth(2).setStrokeDashArray("10,10").getLine();
         parent.appendChild(line);
+
+        if (arrowhead) {
+            Element arrow1;
+            Element arrow2;
+
+            if (y1 == y2) {
+                int sign = (x1 < x2 ? -1 : 1);
+
+                arrow1 = new LineBuilder().setX1(x2 + (2*sign)).setY1(y2).setX2(x2 + (8 * sign)).setY2(y2 - 5).setFill("none").setStroke("#FFFFFF").setStrokeWidth(2).getLine();
+                arrow2 = new LineBuilder().setX1(x2 + (2*sign)).setY1(y2).setX2(x2 + (8 * sign)).setY2(y2 + 5).setFill("none").setStroke("#FFFFFF").setStrokeWidth(2).getLine();
+            } else {
+                int sign = (y1 < y2 ? -1 : 1);
+
+                arrow1 = new LineBuilder().setX1(x2).setY1(y2 + (2*sign)).setX2(x2 - 5).setY2(y2 + (8 * sign)).setFill("none").setStroke("#FFFFFF").setStrokeWidth(2).getLine();
+                arrow2 = new LineBuilder().setX1(x2).setY1(y2 + (2*sign)).setX2(x2 + 5).setY2(y2 + (8 * sign)).setFill("none").setStroke("#FFFFFF").setStrokeWidth(2).getLine();
+            }
+
+            parent.appendChild(arrow1);
+            parent.appendChild(arrow2);
+        }
     }
 
     /**
-     * This is a "helper" method used for creating dotted line. It can also put text next to the line.
+     * This is a "helper" method used for creating dotted line. It can also put text next to the line (currently only works with vertical lines).
      *
-     * {@link #drawDottedLine(Element, double, double, double, double)}
+     * {@link #drawDottedLine(Element, double, double, double, double, boolean)}
      * @param parent Element that will be parent of the created route.
      * @param x1 x coordinate of the start of the line.
      * @param y1 y coordinate of the start of the line.
