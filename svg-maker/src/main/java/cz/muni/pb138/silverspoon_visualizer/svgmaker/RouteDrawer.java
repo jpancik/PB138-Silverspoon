@@ -70,6 +70,19 @@ public class RouteDrawer {
         parent.appendChild(line);
     }
 
+    public void drawDottedLine(Element parent, double x1, double y1, double x2, double y2, String text) {
+        Element line = new LineBuilder().setX1(x1).setY1(y1).setX2(x2).setY2(y2).setFill("none").setStroke("#FFFFFF").setStrokeWidth(2).setStrokeDashArray("10,10").getLine();
+        parent.appendChild(line);
+        
+        Element lineText = document.createElementNS(svgNS, "text");
+        lineText.setAttributeNS(null, "x", String.valueOf(x1 + 5));
+        lineText.setAttributeNS(null, "y", String.valueOf((y1 + y2)/2));
+        lineText.setAttributeNS(null, "font-size", "100%");
+        lineText.setAttributeNS(null, "fill", "#FFFFFF");
+        lineText.setTextContent(text.toUpperCase());
+        parent.appendChild(lineText);
+    }
+
     private class RectBuilder {
         private Element rect;
 

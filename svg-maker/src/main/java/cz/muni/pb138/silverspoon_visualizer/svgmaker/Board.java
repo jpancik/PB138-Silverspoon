@@ -12,6 +12,8 @@ import java.io.*;
 import java.net.URI;
 
 /**
+ * This class represents the base concept of any board.
+ *
  * @author Martin Zilak
  * @version 2015/05/30
  */
