@@ -30,6 +30,7 @@ public class Cubieboard2 extends Board {
         RouteDrawer routeDrawer = new RouteDrawer(route, svgDocument);
         routeDrawer.drawRoute();
 
+        //next part handles expanding the .svg
         double routeMainRectWidth = Double.parseDouble(svgDocument.getElementById("main_rect").getAttribute("width"));
         if (routeMainRectWidth > 365) {
             Element svgBodyRect = svgDocument.getElementById("body");
@@ -42,6 +43,7 @@ public class Cubieboard2 extends Board {
             svgMainElement.setAttribute("width", String.valueOf((Double.parseDouble(svgMainElement.getAttribute("width")) + routeMainRectWidth - 365)));
         }
 
+        //next part handles drawing dotted line from starting pin to first route module
         Element svgRouteElement = svgDocument.getElementById("dotted_lines");
 
         PathObject pathObject = route.getFirst();

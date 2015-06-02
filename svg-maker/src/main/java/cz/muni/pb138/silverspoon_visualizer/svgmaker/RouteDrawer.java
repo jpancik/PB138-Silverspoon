@@ -12,6 +12,8 @@ import org.w3c.dom.Element;
 import javax.sound.sampled.Line;
 
 /**
+ * This class handles most of the route drawing.
+ *
  * @author Martin Zilak
  * @version 2015/06/01
  */
@@ -27,11 +29,18 @@ public class RouteDrawer {
     private String svgNS;
     private Document document;
 
+    /**
+     * @param route Route object.
+     * @param document Document containing .svg to modify.
+     */
     public RouteDrawer(Route route, Document document) {
         this.route = route;
         this.document = document;
     }
 
+    /**
+     * This method handles route drawing.
+     */
     public void drawRoute() {
         int i = route.getLength();
         int width = (i + 1) * ROUTE_SPACER_WIDTH + i * ROUTE_MODULE_WIDTH;
@@ -65,11 +74,31 @@ public class RouteDrawer {
         }
     }
 
+    /**
+     * This is a "helper" method used for creating dotted line from point A to point B, setting it's other parameters to set ones.
+     *
+     * @param parent Element that will be parent of the created route.
+     * @param x1 x coordinate of the start of the line.
+     * @param y1 y coordinate of the start of the line.
+     * @param x2 x coordinate of the end of the line.
+     * @param y2 y coordinate of the end of the line.
+     */
     public void drawDottedLine(Element parent, double x1, double y1, double x2, double y2) {
         Element line = new LineBuilder().setX1(x1).setY1(y1).setX2(x2).setY2(y2).setFill("none").setStroke("#FFFFFF").setStrokeWidth(2).setStrokeDashArray("10,10").getLine();
         parent.appendChild(line);
     }
 
+    /**
+     * This is a "helper" method used for creating dotted line. It can also put text next to the line.
+     *
+     * {@link #drawDottedLine(Element, double, double, double, double)}
+     * @param parent Element that will be parent of the created route.
+     * @param x1 x coordinate of the start of the line.
+     * @param y1 y coordinate of the start of the line.
+     * @param x2 x coordinate of the end of the line.
+     * @param y2 y coordinate of the end of the line.
+     * @param text String containing text to be put next to the generated line.
+     */
     public void drawDottedLine(Element parent, double x1, double y1, double x2, double y2, String text) {
         Element line = new LineBuilder().setX1(x1).setY1(y1).setX2(x2).setY2(y2).setFill("none").setStroke("#FFFFFF").setStrokeWidth(2).setStrokeDashArray("10,10").getLine();
         parent.appendChild(line);

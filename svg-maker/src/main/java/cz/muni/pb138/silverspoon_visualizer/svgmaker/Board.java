@@ -20,6 +20,9 @@ import java.net.URI;
 public abstract class Board {
     protected Document svgDocument;
 
+    /**
+     * @param path Path to the .svg template.
+     */
     protected Board(String path) {
         try {
             InputStream svgInputStream = this.getClass().getResourceAsStream(path);
@@ -36,6 +39,11 @@ public abstract class Board {
         }
     }
 
+    /**
+     * This method returns you the .svg in it's current state (with modifications, if any were done).
+     *
+     * @return Document containing .svg.
+     */
     public Document getSVG() {
         return this.svgDocument;
     }

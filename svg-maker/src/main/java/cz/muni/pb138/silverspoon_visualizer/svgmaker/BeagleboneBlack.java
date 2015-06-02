@@ -31,6 +31,7 @@ public class BeagleboneBlack extends Board {
         RouteDrawer routeDrawer = new RouteDrawer(route, svgDocument);
         routeDrawer.drawRoute();
 
+        //next part handles expanding the .svg
         double routeMainRectWidth = Double.parseDouble(svgDocument.getElementById("main_rect").getAttribute("width"));
         if (routeMainRectWidth > 275) {
             Element svgBodyRect = svgDocument.getElementById("body");
@@ -43,6 +44,7 @@ public class BeagleboneBlack extends Board {
             svgMainElement.setAttribute("width", String.valueOf((Double.parseDouble(svgMainElement.getAttribute("width")) + routeMainRectWidth - 275)));
         }
 
+        //next part handles drawing dotted line from starting pin to first route module
         Element svgRouteElement = svgDocument.getElementById("dotted_lines");
 
         PathObject pathObject = route.getFirst();

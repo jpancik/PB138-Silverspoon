@@ -35,6 +35,7 @@ public class RaspberryPi extends Board {
         RouteDrawer routeDrawer = new RouteDrawer(route, svgDocument);
         routeDrawer.drawRoute();
 
+        //next part handles expanding the .svg
         double routeMainRectWidth = Double.parseDouble(svgDocument.getElementById("main_rect").getAttribute("width"));
         if (routeMainRectWidth > 315) {
             Element svgBodyRect = svgDocument.getElementById("body");
@@ -47,6 +48,7 @@ public class RaspberryPi extends Board {
             svgMainElement.setAttribute("width", String.valueOf((Double.parseDouble(svgMainElement.getAttribute("width")) + routeMainRectWidth - 315)));
         }
 
+        //next part handles drawing dotted line from starting pin to first route module
         Element svgRouteElement = svgDocument.getElementById("dotted_lines");
 
         PathObject pathObject = route.getFirst();
