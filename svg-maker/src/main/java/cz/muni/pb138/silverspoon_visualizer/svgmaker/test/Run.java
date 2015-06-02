@@ -27,7 +27,7 @@ public class Run {
             parser.setSource("/t1.xml");
             parser.load();
 
-            pi = new RaspberryPi();
+            pi = new BeagleboneBlack();
             pi.drawRoute(parser.getRoutes().get(0));
 
             Document document = pi.getSVG();

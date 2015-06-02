@@ -12,12 +12,17 @@ import java.io.*;
 import java.net.URI;
 
 /**
+ * This class represents the base concept of any board.
+ *
  * @author Martin Zilak
  * @version 2015/05/30
  */
 public abstract class Board {
     protected Document svgDocument;
 
+    /**
+     * @param path Path to the .svg template.
+     */
     protected Board(String path) {
         try {
             InputStream svgInputStream = this.getClass().getResourceAsStream(path);
@@ -34,6 +39,11 @@ public abstract class Board {
         }
     }
 
+    /**
+     * This method returns you the .svg in it's current state (with modifications, if any were done).
+     *
+     * @return Document containing .svg.
+     */
     public Document getSVG() {
         return this.svgDocument;
     }
