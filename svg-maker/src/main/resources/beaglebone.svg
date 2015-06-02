@@ -168,6 +168,7 @@
     <text x="594" y="438" font-size="60%" fill="#FFFFFF">45</text>
     <text x="248" y="155" font-size="120%" fill="#333333">P8</text>
     <text x="248" y="409" font-size="120%" fill="#333333">P9</text>
+	<text id="ethernet_text" fill="#FFFFFF" x="120" y="195" font-size="65%">ETHERNET</text>
   </g>
   
   <g id="route" transform="translate(275 175)">
