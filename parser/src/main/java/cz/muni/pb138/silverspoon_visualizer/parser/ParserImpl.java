@@ -131,9 +131,9 @@ public class ParserImpl implements Parser {
     private PathObject protocolHandling(URI uri) {
         String protocol = uri.getScheme();
         if (protocol.equals("gpio")) {
-            return new SimpleGpioPathObject.GpioPathObjectBuilder().setAdditionalInfo(uri.getSchemeSpecificPart()).setName(protocol).setNextType(SuccessionTypes.STRAIGHT).setPin(uri.getHost()).build();
+            return new SimpleGpioPathObject.GpioPathObjectBuilder().setAdditionalInfo(uri.getSchemeSpecificPart()).setName(protocol).setNextType(SuccessionTypes.STRAIGHT).setPin(uri.getAuthority()).build();
         } else if(protocol.equals("mqtt")) {
-            return new SimplePathObject.SimplePathObjectBuilder().setAdditionalInfo(uri.getSchemeSpecificPart()).setName(protocol).setNextType(SuccessionTypes.STRAIGHT).setNextType(SuccessionTypes.ETHERNET).build();
+            return new SimplePathObject.SimplePathObjectBuilder().setAdditionalInfo(uri.getSchemeSpecificPart()).setName(protocol).setNextType(SuccessionTypes.ETHERNET).build();
         }
         else {
             return new SimplePathObject.SimplePathObjectBuilder().setAdditionalInfo(uri.getSchemeSpecificPart()).setName(protocol).setNextType(SuccessionTypes.STRAIGHT).build();
