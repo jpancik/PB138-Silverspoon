@@ -1,4 +1,6 @@
 .idea
 target
 *.iml
+output.svg
+result.html
 lib
