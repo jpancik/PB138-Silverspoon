@@ -1,5 +1,6 @@
 package cz.muni.pb138.silverspoon_visualizer.svgmaker;
 
+import cz.muni.pb138.silverspoon_visualizer.parser.GpioPathObject;
 import cz.muni.pb138.silverspoon_visualizer.parser.PathObject;
 import cz.muni.pb138.silverspoon_visualizer.parser.Route;
 import cz.muni.pb138.silverspoon_visualizer.parser.SuccessionTypes;
@@ -7,6 +8,8 @@ import org.apache.batik.anim.dom.SVGDOMImplementation;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+
+import javax.sound.sampled.Line;
 
 /**
  * @author Martin Zilak
@@ -60,6 +63,11 @@ public class RouteDrawer {
                 spacer += ROUTE_SPACER_WIDTH + ROUTE_MODULE_WIDTH;
             }
         }
+    }
+
+    public void drawDottedLine(Element parent, double x1, double y1, double x2, double y2) {
+        Element line = new LineBuilder().setX1(x1).setY1(y1).setX2(x2).setY2(y2).setFill("none").setStroke("#FFFFFF").setStrokeWidth(2).setStrokeDashArray("10,10").getLine();
+        parent.appendChild(line);
     }
 
     private class RectBuilder {
@@ -146,6 +154,26 @@ public class RouteDrawer {
             return this;
         }
 
+        public LineBuilder setStrokeDashArray(String pattern) {
+            this.line.setAttributeNS(null, "stroke-dasharray", pattern);
+            return this;
+        }
+
+        public LineBuilder setStroke(String stroke) {
+            this.line.setAttributeNS(null, "stroke", stroke);
+            return this;
+        }
+
+        public LineBuilder setFill(String fill) {
+            this.line.setAttributeNS(null, "fill", fill);
+            return this;
+        }
+
+        public LineBuilder setStrokeWidth(double strokeWidth) {
+            this.line.setAttributeNS(null, "stroke-width", String.valueOf(strokeWidth));
+            return this;
+        }
+
         public Element getLine() {
             return this.line;
         }
@@ -166,7 +194,7 @@ public class RouteDrawer {
             Element moduleGroup = document.createElementNS(svgNS, "g");
             moduleGroup.setAttributeNS(null, "id", "module_" + String.valueOf(num));
 
-            Element moduleRect = new RectBuilder().setX(x).setY(ROUTE_SPACER_HEIGHT).setWidth(ROUTE_MODULE_WIDTH).setHeight(ROUTE_MODULE_HEIGHT).setFill(ROUTE_MODULE_COLOR).setRX(4).setStroke("#FFFFFF").setStrokeWidth(2).getRect();
+            Element moduleRect = new RectBuilder().setID("module_" + String.valueOf(num) + "_rect").setX(x).setY(ROUTE_SPACER_HEIGHT).setWidth(ROUTE_MODULE_WIDTH).setHeight(ROUTE_MODULE_HEIGHT).setFill(ROUTE_MODULE_COLOR).setRX(4).setStroke("#FFFFFF").setStrokeWidth(2).getRect();
             moduleGroup.appendChild(moduleRect);
 
             if (text.length() >= 10) {
