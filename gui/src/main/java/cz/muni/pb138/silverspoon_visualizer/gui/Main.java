@@ -98,6 +98,9 @@ public class Main {
                 } catch (ParserException | TransformerException | IOException e1) {
                     showError("An error with generating svg has occurred. See java console for further details.");
                     e1.printStackTrace();
+                } catch (IllegalArgumentException e1) {
+                    showError("An error with generating svg has occurred: " + e1.getMessage());
+                    e1.printStackTrace();
                 }
             }
         });
