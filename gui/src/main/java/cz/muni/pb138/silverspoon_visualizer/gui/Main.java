@@ -49,7 +49,7 @@ public class Main {
                     board = new RaspberryPi();
                 } else if(cubieBoard2RadioButton.isSelected()) {
                     board = new Cubieboard2();
-                } else if(board == null) {
+                } else {
                     throw new IllegalStateException("Selected board cannot be null!");
                 }
 
@@ -75,7 +75,7 @@ public class Main {
                 } catch (ParserException | TransformerException | IOException e1) {
                     showError("An error with generating svg has occurred. See java console for further details.");
                     e1.printStackTrace();
-                } catch (IllegalArgumentException | IllegalStateException e1) {
+                } catch (IllegalArgumentException | IllegalStateException | NullPointerException e1) {
                     showError("An error with generating svg has occurred: " + e1.getMessage());
                     e1.printStackTrace();
                 }
