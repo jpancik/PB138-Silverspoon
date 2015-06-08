@@ -1,8 +1,6 @@
 package cz.muni.pb138.silverspoon_visualizer.gui;
 
-import cz.muni.pb138.silverspoon_visualizer.parser.Parser;
 import cz.muni.pb138.silverspoon_visualizer.parser.ParserException;
-import cz.muni.pb138.silverspoon_visualizer.parser.ParserImpl;
 import cz.muni.pb138.silverspoon_visualizer.svgmaker.BeagleboneBlack;
 import cz.muni.pb138.silverspoon_visualizer.svgmaker.Board;
 import cz.muni.pb138.silverspoon_visualizer.svgmaker.Cubieboard2;
@@ -12,20 +10,18 @@ import org.xml.sax.SAXException;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.*;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.TransformerException;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.util.Scanner;
+import java.io.File;
+import java.io.IOException;
 
 /**
+ * Main class for GUI interface.
+ *
+ * @author juraj@pancik.com
  */
 public class Main {
 
@@ -39,9 +35,13 @@ public class Main {
     private JScrollPane scrollPane;
 
     public Main() {
+        /*
+            Generate button binding.
+         */
         generateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //pick correct board
                 Board board = null;
                 if(beagleBoneBlackRadioButton.isSelected()) {
                     board = new BeagleboneBlack();
@@ -53,47 +53,24 @@ public class Main {
                     throw new IllegalStateException("Selected board cannot be null!");
                 }
 
-                String data = textData.getText();
-
-                Parser parser = new ParserImpl();
                 try {
-                    parser.setSource(new ByteArrayInputStream(data.getBytes(StandardCharsets.UTF_8)));
-                    parser.load();
+                    //create svg doc
+                    Document svgDocument = XMLUtils.createSVGDocument(board, textData.getText());
 
-                    if(parser.getRoutes().isEmpty()) throw new IllegalStateException("There has to be at least one route in given xml!");
-
-                    board.drawRoute(parser.getRoutes().get(0));
-
-                    Document document = board.getSVG();
-
-                    Transformer transformer = TransformerFactory.newInstance().newTransformer();
+                    //save it as .svg
                     File svgOutputFile = new File("output.svg");
-                    Result svgOutput = new StreamResult(svgOutputFile);
-                    transformer.transform(new DOMSource(document), svgOutput);
+                    XMLUtils.createSVGFile(svgOutputFile, svgDocument);
 
-
+                    //load template html
                     File resultTemplateFile = new File(getClass().getClassLoader().getResource("result-template.html").getFile());
-                    StringBuilder resultTemplate = new StringBuilder("");
-                    try (Scanner scanner = new Scanner(resultTemplateFile)) {
+                    String templateHtmlData = FileUtils.loadFileIntoString(resultTemplateFile);
 
-                        while (scanner.hasNextLine()) {
-                            String line = scanner.nextLine();
-                            resultTemplate.append(line).append("\n");
-                        }
-
-                        scanner.close();
-
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
-                    }
-
-                    String resultOutput = resultTemplate.toString().replace("{file_path}", svgOutputFile.getAbsolutePath());
-
+                    //fill it with path to svg, save it to disk
+                    String resultHtmlData = templateHtmlData.replace("{file_path}", svgOutputFile.getAbsolutePath());
                     File resultHtmlFile = new File("result.html");
-                    Writer writer = new PrintWriter(resultHtmlFile);
-                    writer.write(resultOutput);
-                    writer.close();
+                    FileUtils.writeStringIntoFile(resultHtmlFile, resultHtmlData);
 
+                    //open the resulting html
                     Desktop.getDesktop().open(resultHtmlFile);
                 } catch (ParserException | TransformerException | IOException e1) {
                     showError("An error with generating svg has occurred. See java console for further details.");
@@ -104,43 +81,28 @@ public class Main {
                 }
             }
         });
-        loadFromFileButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JFileChooser fileChooser = new JFileChooser();
-                fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-                fileChooser.setFileFilter(new FileNameExtensionFilter("XML Files", "xml", "xml"));
-                int returnVal = fileChooser.showOpenDialog(main);
 
-                if(returnVal == JFileChooser.APPROVE_OPTION) {
-                    File selectedFile = fileChooser.getSelectedFile();
+        /*
+            Load from XML file button binding.
+         */
+        loadFromFileButton.addActionListener(e -> {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            fileChooser.setFileFilter(new FileNameExtensionFilter("XML Files", "xml", "xml"));
+            int returnVal = fileChooser.showOpenDialog(main);
 
-                    if(selectedFile.exists()) {
-                        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-                        DocumentBuilder dBuilder = null;
-                        try {
-                            dBuilder = dbFactory.newDocumentBuilder();
+            if(returnVal == JFileChooser.APPROVE_OPTION) {
+                File selectedFile = fileChooser.getSelectedFile();
 
-                            Document document = dBuilder.parse(selectedFile);
-
-                            TransformerFactory tFactory = TransformerFactory.newInstance();
-                            Transformer transformer = tFactory.newTransformer();
-
-                            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
-                            DOMSource source = new DOMSource(document);
-                            StreamResult result = new StreamResult(baos);
-                            transformer.transform(source, result);
-
-                            baos.close();
-                            textData.setText(baos.toString(StandardCharsets.UTF_8.name()));
-                        } catch (ParserConfigurationException | SAXException | IOException | TransformerException e1) {
-                            showError("An error with input xml has occurred. See java console for further details.");
-                            e1.printStackTrace();
-                        }
-                    } else {
-                        showError("Selected file doesn't exist.");
+                if(selectedFile.exists()) {
+                    try {
+                        textData.setText(XMLUtils.loadXMLFileIntoString(selectedFile));
+                    } catch (ParserConfigurationException | SAXException | IOException | TransformerException e1) {
+                        showError("An error with input xml has occurred. See java console for further details.");
+                        e1.printStackTrace();
                     }
+                } else {
+                    showError("Selected file doesn't exist.");
                 }
             }
         });
@@ -149,13 +111,7 @@ public class Main {
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (UnsupportedLookAndFeelException e) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
 
@@ -175,33 +131,5 @@ public class Main {
 
     public static void showError(String s){
         JOptionPane.showMessageDialog(null, s, "Error", JOptionPane.ERROR_MESSAGE);
-    }
-
-    private static String getStringFromInputStream(InputStream is) {
-
-        BufferedReader br = null;
-        StringBuilder sb = new StringBuilder();
-
-        String line;
-        try {
-
-            br = new BufferedReader(new InputStreamReader(is));
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        return sb.toString();
     }
 }
