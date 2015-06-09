@@ -10,7 +10,7 @@
     </bean>
     <camelContext trace="false" xmlns="http://camel.apache.org/schema/spring">
         <route customId="true" id="iot-door-bell-route">
-            <from uri="gpio://p8_1?value=HIGH"/>
+            <from uri="gpio://ph7_10?value=HIGH"/>
             <to uri="bean:webCamBean?method=getPicture"/>
             <to uri="mqtt://iot-demo?host=tcp://localhost:1883&amp;publishTopicName=IotDemo"/>
         </route>
