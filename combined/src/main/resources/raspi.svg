@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="760" height="560">
+  
+  <defs>
+    <circle id="hole" cx="0" cy="0" r="13" fill="#FFFFFF" stroke="#B8AF82" stroke-width="9" />
+	
+    <g id="pin">
+      <rect x="5" y="4" width="6" height="6" fill="#827C60" />
+      <polygon points="4,4 5,4 5,10 11,10 11,11 4,11" fill="#000000" style="fill-opacity:0.9" />
+      <polygon points="5,4 6,4 6,9 11,9 11,10 5,10" fill="#B8AF82" style="fill-opacity:1" />
+    </g>
+	
+    <g id="up_pins">
+      <polygon points="4,0 12,0 16,4 16,14 0,14 0,4" fill="#404040" />
+      <use xlink:href="#pin" />
+    </g>
+	
+    <g id="down_pins">
+      <polygon points="0,0 16,0 16,10 12,14 4,14 0,10" fill="#404040" />
+      <use xlink:href="#pin" />
+    </g>
+	
+    <linearGradient id="silver_grad" x1="0" x2="0" y1="0" y2="1.41" gradientTransform="rotate(-45)">
+      <stop offset="0%" stop-color="#919191"/>
+      <stop offset="25%" stop-color="#7E7E7E"/>
+      <stop offset="50%" stop-color="#E6E6E6"/>
+      <stop offset="75%" stop-color="#7E7E7E"/>
+      <stop offset="100%" stop-color="#919191"/>
+    </linearGradient>
+	
+    <polygon id="port_latch" points="0,0 40,5 40,25 0,30 0,27.5 36,22 36,8 0,2.5" fill="#000000" style="fill-opacity:0.75" />
+  </defs>
+  
+  <rect id="body" x="100" y="100" width="475" height="310" rx="20" fill="#007300" />
+  
+  <g id="movable" transform="translate(0 0)">
+    <rect id="ethernet" x="460" y="295" width="125" height="90" rx="2" fill="url(#silver_grad)" />
+    
+	<text id="ethernet_text" x="520" y="400" font-size="55%" fill="#FFFFFF">ETHERNET</text>
+    
+	<g id="usb_ports">
+      <rect x="495" y="195" width="90" height="80" rx="1" fill="url(#silver_grad)" />
+      <use xlink:href="#port_latch" transform="translate(548 205), scale(0.7 0.8)" />
+      <use xlink:href="#port_latch" transform="translate(548 240), scale(0.7 0.8)" />
+      <rect x="495" y="105" width="90" height="80" rx="1" fill="url(#silver_grad)" />
+      <use xlink:href="#port_latch" transform="translate(548 115), scale(0.7 0.8)" />
+      <use xlink:href="#port_latch" transform="translate(548 150), scale(0.7 0.8)" />
+    </g>
+	
+	<g id="movable_holes">
+	  <use x="415" y="120" xlink:href="#hole" />
+	  <use x="415" y="390" xlink:href="#hole" />
+	</g>
+  </g>
+  
+  <g id="static_holes">
+    <use x="120" y="120" xlink:href="#hole" />
+    <use x="120" y="390" xlink:href="#hole" />
+  </g>
+  
+  <g id="pins">
+    <use id="ph7_1" x="145" y="118" xlink:href="#down_pins" />
+    <use id="ph7_2" x="145" y="105" xlink:href="#up_pins" />
+    <use id="ph7_3" x="157" y="118" xlink:href="#down_pins" />
+    <use id="ph7_4" x="157" y="105" xlink:href="#up_pins" />
+    <use id="ph7_5" x="169" y="118" xlink:href="#down_pins" />
+    <use id="ph7_6" x="169" y="105" xlink:href="#up_pins" />
+    <use id="ph7_7" x="181" y="118" xlink:href="#down_pins" />
+    <use id="ph7_8" x="181" y="105" xlink:href="#up_pins" />
+    <use id="ph7_9" x="193" y="118" xlink:href="#down_pins" />
+    <use id="ph7_10" x="193" y="105" xlink:href="#up_pins" />
+    <use id="ph7_11" x="205" y="118" xlink:href="#down_pins" />
+    <use id="ph7_12" x="205" y="105" xlink:href="#up_pins" />
+    <use id="ph7_13" x="217" y="118" xlink:href="#down_pins" />
+    <use id="ph7_14" x="217" y="105" xlink:href="#up_pins" />
+    <use id="ph7_15" x="229" y="118" xlink:href="#down_pins" />
+    <use id="ph7_16" x="229" y="105" xlink:href="#up_pins" />
+    <use id="ph7_17" x="241" y="118" xlink:href="#down_pins" />
+    <use id="ph7_18" x="241" y="105" xlink:href="#up_pins" />
+    <use id="ph7_19" x="253" y="118" xlink:href="#down_pins" />
+    <use id="ph7_20" x="253" y="105" xlink:href="#up_pins" />
+    <use id="ph7_21" x="265" y="118" xlink:href="#down_pins" />
+    <use id="ph7_22" x="265" y="105" xlink:href="#up_pins" />
+    <use id="ph7_23" x="277" y="118" xlink:href="#down_pins" />
+    <use id="ph7_24" x="277" y="105" xlink:href="#up_pins" />
+    <use id="ph7_25" x="289" y="118" xlink:href="#down_pins" />
+    <use id="ph7_26" x="289" y="105" xlink:href="#up_pins" />
+    <use id="ph7_27" x="301" y="118" xlink:href="#down_pins" />
+    <use id="ph7_28" x="301" y="105" xlink:href="#up_pins" />
+    <use id="ph7_29" x="313" y="118" xlink:href="#down_pins" />
+    <use id="ph7_30" x="313" y="105" xlink:href="#up_pins" />
+    <use id="ph7_31" x="325" y="118" xlink:href="#down_pins" />
+    <use id="ph7_32" x="325" y="105" xlink:href="#up_pins" />
+    <use id="ph7_33" x="337" y="118" xlink:href="#down_pins" />
+    <use id="ph7_34" x="337" y="105" xlink:href="#up_pins" />
+    <use id="ph7_35" x="349" y="118" xlink:href="#down_pins" />
+    <use id="ph7_36" x="349" y="105" xlink:href="#up_pins" />
+    <use id="ph7_37" x="361" y="118" xlink:href="#down_pins" />
+    <use id="ph7_38" x="361" y="105" xlink:href="#up_pins" />
+    <use id="ph7_39" x="373" y="118" xlink:href="#down_pins" />
+    <use id="ph7_40" x="373" y="105" xlink:href="#up_pins" />
+  </g>
+  
+  <g id="route" transform="translate(125 175)">
+  </g>
+  
+  <g id="dotted_lines">
+  </g>
+  
+</svg>

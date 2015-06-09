@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="760" height="560">
+  
+  <defs>
+    <g id="hole">
+      <circle cx="0" cy="0" r="16" fill="#FFFFFF" />
+      <circle cx="0" cy="0" r="10" fill="#FFFFFF" stroke="#B8AF82" stroke-width="6" />
+    </g>
+    
+    <g id="pin">
+      <rect x="0" y="0" width="14" height="14" fill="#1B1B1B" />
+      <circle cx="7" cy="7" r="2" fill="#B8AF82" stroke="#827C60" stroke-width="1.5"/>
+    </g>
+    
+    <linearGradient id="silver_grad" x1="0" x2="0" y1="0" y2="1.41" gradientTransform="rotate(-45)">
+      <stop offset="0%" stop-color="#919191"/>
+      <stop offset="25%" stop-color="#7E7E7E"/>
+      <stop offset="50%" stop-color="#E6E6E6"/>
+      <stop offset="75%" stop-color="#7E7E7E"/>
+      <stop offset="100%" stop-color="#919191"/>
+    </linearGradient>
+    
+    <polygon id="port_latch" points="0,0 40,5 40,25 0,30 0,27.5 36,22 36,8 0,2.5" fill="#000000" style="fill-opacity:0.75" />
+  </defs>
+  
+  <rect id="body" x="100" y="100" width="525" height="320" rx="20" fill="#29262D" />
+  
+  <g id="movable" transform="translate(0 0)">
+    <g id="movable_holes">
+      <use x="605" y="120" xlink:href="#hole" />
+      <use x="605" y="400" xlink:href="#hole" />
+    </g>
+    
+    <g id="ethernet_group">
+      <rect id="ethernet" x="515" y="290" width="125" height="90" rx="2" fill="url(#silver_grad)" />
+      <text id="ethernet_text" x="520" y="285" font-size="55%" fill="#FFFFFF">ETHERNET</text>
+    </g>
+  </g>
+  
+  <g id="static_holes">
+    <use x="165" y="120" xlink:href="#hole" />
+    <use x="165" y="400" xlink:href="#hole" />
+  </g>
+  
+  <g id="pins">
+    <rect x="271" y="105" width="315" height="29" fill="#FFFFFF" />
+    <use id="1_1" x="272" y="119" xlink:href="#pin" />
+    <use id="1_2" x="272" y="106" xlink:href="#pin" />
+    <use id="1_3" x="285" y="119" xlink:href="#pin" />
+    <use id="1_4" x="285" y="106" xlink:href="#pin" />
+    <use id="1_5" x="298" y="119" xlink:href="#pin" />
+    <use id="1_6" x="298" y="106" xlink:href="#pin" />
+    <use id="1_7" x="311" y="119" xlink:href="#pin" />
+    <use id="1_8" x="311" y="106" xlink:href="#pin" />
+    <use id="1_9" x="324" y="119" xlink:href="#pin" />
+    <use id="1_10" x="324" y="106" xlink:href="#pin" />
+    <use id="1_11" x="337" y="119" xlink:href="#pin" />
+    <use id="1_12" x="337" y="106" xlink:href="#pin" />
+    <use id="1_13" x="350" y="119" xlink:href="#pin" />
+    <use id="1_14" x="350" y="106" xlink:href="#pin" />
+    <use id="1_15" x="363" y="119" xlink:href="#pin" />
+    <use id="1_16" x="363" y="106" xlink:href="#pin" />
+    <use id="1_17" x="376" y="119" xlink:href="#pin" />
+    <use id="1_18" x="376" y="106" xlink:href="#pin" />
+    <use id="1_19" x="389" y="119" xlink:href="#pin" />
+    <use id="1_20" x="389" y="106" xlink:href="#pin" />
+    <use id="1_21" x="402" y="119" xlink:href="#pin" />
+    <use id="1_22" x="402" y="106" xlink:href="#pin" />
+    <use id="1_23" x="415" y="119" xlink:href="#pin" />
+    <use id="1_24" x="415" y="106" xlink:href="#pin" />
+    <use id="1_25" x="428" y="119" xlink:href="#pin" />
+    <use id="1_26" x="428" y="106" xlink:href="#pin" />
+    <use id="1_27" x="441" y="119" xlink:href="#pin" />
+    <use id="1_28" x="441" y="106" xlink:href="#pin" />
+    <use id="1_29" x="454" y="119" xlink:href="#pin" />
+    <use id="1_30" x="454" y="106" xlink:href="#pin" />
+    <use id="1_31" x="467" y="119" xlink:href="#pin" />
+    <use id="1_32" x="467" y="106" xlink:href="#pin" />
+    <use id="1_33" x="480" y="119" xlink:href="#pin" />
+    <use id="1_34" x="480" y="106" xlink:href="#pin" />
+    <use id="1_35" x="493" y="119" xlink:href="#pin" />
+    <use id="1_36" x="493" y="106" xlink:href="#pin" />
+    <use id="1_37" x="506" y="119" xlink:href="#pin" />
+    <use id="1_38" x="506" y="106" xlink:href="#pin" />
+    <use id="1_39" x="519" y="119" xlink:href="#pin" />
+    <use id="1_40" x="519" y="106" xlink:href="#pin" />
+    <use id="1_41" x="532" y="119" xlink:href="#pin" />
+    <use id="1_42" x="532" y="106" xlink:href="#pin" />
+    <use id="1_43" x="545" y="119" xlink:href="#pin" />
+    <use id="1_44" x="545" y="106" xlink:href="#pin" />
+    <use id="1_45" x="558" y="119" xlink:href="#pin" />
+    <use id="1_46" x="558" y="106" xlink:href="#pin" />
+    <use id="1_47" x="571" y="119" xlink:href="#pin" />
+    <use id="1_48" x="571" y="106" xlink:href="#pin" />
+    <rect x="271" y="386" width="315" height="29" fill="#FFFFFF" />
+    <use id="2_1" x="571" y="387" xlink:href="#pin" />
+    <use id="2_2" x="571" y="400" xlink:href="#pin" />
+    <use id="2_3" x="558" y="387" xlink:href="#pin" />
+    <use id="2_4" x="558" y="400" xlink:href="#pin" />
+    <use id="2_5" x="545" y="387" xlink:href="#pin" />
+    <use id="2_6" x="545" y="400" xlink:href="#pin" />
+    <use id="2_7" x="532" y="387" xlink:href="#pin" />
+    <use id="2_8" x="532" y="400" xlink:href="#pin" />
+    <use id="2_9" x="519" y="387" xlink:href="#pin" />
+    <use id="2_10" x="519" y="400" xlink:href="#pin" />
+    <use id="2_11" x="506" y="387" xlink:href="#pin" />
+    <use id="2_12" x="506" y="400" xlink:href="#pin" />
+    <use id="2_13" x="493" y="387" xlink:href="#pin" />
+    <use id="2_14" x="493" y="400" xlink:href="#pin" />
+    <use id="2_15" x="480" y="387" xlink:href="#pin" />
+    <use id="2_16" x="480" y="400" xlink:href="#pin" />
+    <use id="2_17" x="467" y="387" xlink:href="#pin" />
+    <use id="2_18" x="467" y="400" xlink:href="#pin" />
+    <use id="2_19" x="454" y="387" xlink:href="#pin" />
+    <use id="2_20" x="454" y="400" xlink:href="#pin" />
+    <use id="2_21" x="441" y="387" xlink:href="#pin" />
+    <use id="2_22" x="441" y="400" xlink:href="#pin" />
+    <use id="2_23" x="428" y="387" xlink:href="#pin" />
+    <use id="2_24" x="428" y="400" xlink:href="#pin" />
+    <use id="2_25" x="415" y="387" xlink:href="#pin" />
+    <use id="2_26" x="415" y="400" xlink:href="#pin" />
+    <use id="2_27" x="402" y="387" xlink:href="#pin" />
+    <use id="2_28" x="402" y="400" xlink:href="#pin" />
+    <use id="2_29" x="389" y="387" xlink:href="#pin" />
+    <use id="2_30" x="389" y="400" xlink:href="#pin" />
+    <use id="2_31" x="376" y="387" xlink:href="#pin" />
+    <use id="2_32" x="376" y="400" xlink:href="#pin" />
+    <use id="2_33" x="363" y="387" xlink:href="#pin" />
+    <use id="2_34" x="363" y="400" xlink:href="#pin" />
+    <use id="2_35" x="350" y="387" xlink:href="#pin" />
+    <use id="2_36" x="350" y="400" xlink:href="#pin" />
+    <use id="2_37" x="337" y="387" xlink:href="#pin" />
+    <use id="2_38" x="337" y="400" xlink:href="#pin" />
+    <use id="2_39" x="324" y="387" xlink:href="#pin" />
+    <use id="2_40" x="324" y="400" xlink:href="#pin" />
+    <use id="2_41" x="311" y="387" xlink:href="#pin" />
+    <use id="2_42" x="311" y="400" xlink:href="#pin" />
+    <use id="2_43" x="298" y="387" xlink:href="#pin" />
+    <use id="2_44" x="298" y="400" xlink:href="#pin" />
+    <use id="2_45" x="285" y="387" xlink:href="#pin" />
+    <use id="2_46" x="285" y="400" xlink:href="#pin" />
+    <use id="2_47" x="272" y="387" xlink:href="#pin" />
+    <use id="2_48" x="272" y="400" xlink:href="#pin" />
+  </g>
+  
+  <g id="usb">
+    <rect x="188" y="345" width="80" height="90" rx="1" fill="url(#silver_grad)" />
+    <use xlink:href="#port_latch" transform="translate(220 400), rotate(90), scale(0.7 0.8)" />
+    <use xlink:href="#port_latch" transform="translate(259 400), rotate(90), scale(0.7 0.8)" />
+  </g>
+  
+  <g id="route" transform="translate(125 175)">
+  </g>
+  
+  <g id="dotted_lines">
+  </g>
+  
+</svg>
